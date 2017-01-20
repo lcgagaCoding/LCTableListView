@@ -13,6 +13,10 @@
     tableListSelectView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tableListSelectView];
     
+    ![image](https://github.com/lcgagaCoding/LCTableListView/blob/master/Gift/LCTableListView.gif)
+    
+    
+    
     
     - (NSArray<NSString *> *)numbersOfItemsWithTableListSelectView:(LCTableListSelectView *)tableListSelectView{
     return @[@"哈哈",@"呵呵",@"啊啊"];
