@@ -16,9 +16,8 @@
     
     - (NSArray<NSString *> *)numbersOfItemsWithTableListSelectView:(LCTableListSelectView *)tableListSelectView{
     return @[@"哈哈",@"呵呵",@"啊啊"];
-}
-
-- (UITableView *)tableViewOfItemsWithTableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+    }
+    - (UITableView *)tableViewOfItemsWithTableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     tableView.showsVerticalScrollIndicator=NO;
@@ -35,34 +34,34 @@
         
     }
     return tableView;
-}
+    }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView tableListSelectView:(LCTableListSelectView *)tableListSelectView  itemIndex:(NSInteger)itemIndex{
     if (itemIndex==0) {
         return 1;
     }
     return 2;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+     }
+    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
     if (itemIndex==0) {
         return 5;
     }
     return 6;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+    }
+    - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
     if (itemIndex==0) {
         return 30;
     }
     return 60;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+    }
+    - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
     if (itemIndex==0) {
         return 20;
     }
     return 40;
-}
+    }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+    - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWIDTH, 40)];
     view.backgroundColor = [UIColor yellowColor];
 
@@ -70,8 +69,8 @@
         view.backgroundColor = [UIColor blueColor];
     }
     return view;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
+    }
+    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath tableListSelectView:(LCTableListSelectView *)tableListSelectView itemIndex:(NSInteger)itemIndex{
     
     if (itemIndex==0) {
         static NSString *cellId = @"cellId";
@@ -90,28 +89,28 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%zi行%zi组",indexPath.row,indexPath.section];
     return cell;
     
-}
+    }
 
-- (void)didSelectItemWithTableListSelectView:(LCTableListSelectView *)tableListSelectView tableView:(UITableView *)tableView itemIndex:(NSInteger)itemIndex{
+     - (void)didSelectItemWithTableListSelectView:(LCTableListSelectView *)tableListSelectView tableView:(UITableView *)tableView itemIndex:(NSInteger)itemIndex{
     NSLog(@"%zi",itemIndex);
     selectTableView = tableView;
     selectIndex = itemIndex;
     [self refreshData];
-}
+    }   
 
 
-- (void)refreshData{
+    - (void)refreshData{
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [selectTableView.mj_header endRefreshing];
  
     });
-}
+    }
 
-- (void)loadMoreData{
+    - (void)loadMoreData{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [selectTableView.mj_footer endRefreshing];
         
     });
 
-}
+    }
